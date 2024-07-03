@@ -39,6 +39,16 @@ export default function SideBar() {
   const [navItems, setNavItems] = useState([...primaryNavItems]);
 
   const renderItems = (projectList: Array<Doc<"projects">>) => {
+    if (projectList.length === 0) {
+      return [
+        {
+          id: "projects",
+          name: "No Projects",
+          link: "",
+          icon: <Hash className="w-4 h-4" />,
+        },
+      ];
+    }
     return projectList.map(({ _id, name }, idx) => {
       return {
         ...(idx === 0 && { id: "projects" }),
